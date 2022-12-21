@@ -1,44 +1,28 @@
-# PaddlePaddle docs
+### Usage
 
-English | [简体中文](./README_cn.md)
+1. pip3 install -r requirements.txt
 
+2. apt-get install doxygen
 
-Source files for contents presented at [PaddlePaddle documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html).
+3. change your path:
 
-Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle), documents for [other PaddlePaddle projects](https://www.paddlepaddle.org.cn/overview) are being managed in their respective ways.
+```
+/FluidDoc 改成你 clone下来的docs仓库路径，如 /home/paddle/docs
+```
 
-## Codebase structure
+4. generate en docs
+```
+cd /home/paddle/docs/docs/api
+python gen_doc.py
+```
 
-- [docs](docs): PaddlePaddle 2.0 & above docs source file.
-- [docs/api](docs/api): PaddlePaddle API docs.
-- [docs/guides](docs/guides): PaddlePaddle guides docs.
-- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs.
-- [ci_scripts](ci_scripts): docs CI scripts.
+5. generate en html
+```
+cd /home/paddle/docs
+sphinx-build -b html -j 12 -d /var/doctrees -c /home/paddle/docs/ci_scripts/doc-build-config/en /home/paddle/docs/docs  /home/paddle/docs/output/en/develop
+```
 
-## How to build
-
-- pre-requirements
-  - docker
-- Instructions
-  - step1: clone docs
-    ```
-    git clone https://github.com/PaddlePaddle/docs
-    ```
-  - step2: build docs
-    ```
-    cd docs
-    mkdir output
-    bash docs-build.sh -f absolute_path_docs
-    ```
-  - step3: preview docs
-  The output of docs will be generated in docs/output.
-
-## How to contribute
-
-PaddlePaddle welcomes documentation contributions, please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
-
-## License
-
-
-
-[Apache License 2.0](LICENSE)
+6. generate cn html 
+```
+sphinx-build -b html -j 12 -d /var/doctrees -c /home/paddle/docs/ci_scripts/doc-build-config/zh /home/paddle/docs/docs  /home/paddle/docs/output/zh/develop
+```

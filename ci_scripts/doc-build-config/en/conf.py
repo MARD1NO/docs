@@ -16,7 +16,7 @@ try:
 except:
     print("import paddle error")
 
-breathe_projects = {"PaddlePaddle": "/docs/doxyoutput/xml"}
+breathe_projects = {"PaddlePaddle": "/home/paddle/docs/docs/doxyoutput/xml"}
 breathe_default_project = "PaddlePaddle"
 MarkdownParser = parser.CommonMarkParser
 AutoStructify = transform.AutoStructify
@@ -58,7 +58,7 @@ extensions = [
 
 exhale_args = {
     # These arguments are required
-    "containmentFolder": "/FluidDoc/docs/inference_api",
+    "containmentFolder": "/home/paddle/docs/docs/inference_api",
     "rootFileName": "library_root.rst",
     "rootFileTitle": "Inference API",
     "doxygenStripFromPath": "..",
@@ -68,7 +68,8 @@ exhale_args = {
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
     "exhaleExecutesDoxygen": True,
-    "exhaleDoxygenStdin": "INPUT=/FluidDoc/docs/inference_api/\nMACRO_EXPANSION=NO\nSKIP_FUNCTION_MACROS=YES",
+    # "exhaleExecutesDoxygen": False,
+    "exhaleDoxygenStdin": "INPUT=/home/paddle/docs/docs/inference_api/\nMACRO_EXPANSION=NO\nSKIP_FUNCTION_MACROS=YES",
     "verboseBuild": True,
     "generateBreatheFileDirectives": True,
 }
@@ -332,11 +333,11 @@ def linkcode_resolve(domain, info):
 def handle_api_aliases():
     """
     因为api定义和导入的各种关系，导致部分api定义的地方和导出的地方不一致被sphinx认为是alias，如paddle.device.cuda.Event等
-    对这部分API做单独的重命名处理，而这部分api的列表，就放在 /FluidDoc/docs/api/api_aliases.ini中吧
+    对这部分API做单独的重命名处理，而这部分api的列表，就放在 /home/paddle/docs/docs/api/api_aliases.ini中吧
     see https://console.cloud.baidu-int.com/devops/icafe/issue/DLTP-35024/show?source=drawer-header
     see https://stackoverflow.com/a/58982001/1738613
     """
-    ini_file = '/FluidDoc/docs/api/api_aliases.ini'
+    ini_file = '/home/paddle/docs/docs/api/api_aliases.ini'
     if not os.path.exists(ini_file):
         return
     config = configparser.ConfigParser()
